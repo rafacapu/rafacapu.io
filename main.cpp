@@ -9,36 +9,41 @@ using namespace std;
 int main(){
 
 Mat image;
-Vec3b val;
-int x1,x2,y1,y2;
+Mat imageTR;
+Mat q1,q2,q3,q4;
 
 
 
 
-image = imread("daft.png",CV_LOAD_IMAGE_GRAYSCALE);
+
+image =imread("daft.png",CV_LOAD_IMAGE_GRAYSCALE);
 
 
+    larg = image.size().width;
+	alt= image.size().height;
 
-namedWindow("janela",WINDOW_AUTOSIZE);	// Nomeando e identificando janelas
 
-    cout << "por favor digite as primeiras cordenadas" << endl;
-    cin >> x1 >> y1;
-    cout << endl;
-    cout << "por favor digite as segundas coordenadas" << endl;
-    cin >> x2 >> y2;
-    cout << endl;
+    q1 = image( Rect( 0 ,  0 , larg/2, alt/2 )).clone();
+	q2 = image( Rect(larg/2,  0 , larg/2, alt/2 )).clone();
+	q3 = image( Rect( 0 , alt/2, larg/2, alt/2 )).clone();
+	q4 = image( Rect(larg/2, alt/2, larg/2 ,alt/2 )).clone();
 
-  for(int i=x1;i<x2;i++){
-    for(int j=y1;j<y2;j++){
-      image.at<uchar>(i,j)=255-image.at<uchar>(i,j);			// Acessando elementos unsigned.. gravando numero 0
-    }
-  }
 
-  imshow("janela", image);  			// Abrindo janela para imagem
-  imwrite("regions.png", image);
-  waitKey();
-  return 0;
+    image.copyTo(imageTR);
+	q1.copyTo(imageTR(Rect(larg/2, alt/2, larg/2 , alt/2 )));
+	q2.copyTo(imageTR(Rect( 0 , alt/2, larg/2 , alt/2 )));
+	q3.copyTo(imageTR(Rect(larg/2,  0 , larg/2 , alt/2 )));
+	q4.copyTo(imageTR(Rect( 0 ,  0 , larg/2 , alt/2 )));
+
+
+	namedWindow("imageTR", WINDOW_AUTOSIZE);
+	imshow("imageTR",imageTR);
+
+
+	waitKey();
+	return 0;
 }
+
 
 
 
