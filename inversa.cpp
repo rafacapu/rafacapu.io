@@ -19,8 +19,8 @@ Mat q1,q2,q3,q4;
 image =imread("daft.png",CV_LOAD_IMAGE_GRAYSCALE);
 
 
-    larg = image.size().width;
-	alt= image.size().height;
+    int larg = image.size().width;
+	 int alt= image.size().height;
 
 
     q1 = image( Rect( 0 ,  0 , larg/2, alt/2 )).clone();
