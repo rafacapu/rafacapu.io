@@ -104,8 +104,7 @@ int main(int argc, char** argv) {
                 }
                 s++;
         }
-        imwrite("images/SpideyCP.png", points);
-        imshow("FINAL", points);
+        
         imshow("Bordas", frame);
         imwrite("images/PontosNovos_Spidey.png", frame);
         waitKey();
